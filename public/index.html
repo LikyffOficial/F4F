@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FNaF Multiplayer Mobile</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; font-family: sans-serif; }
+        #game-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        /* UI Controls */
+        #joystick-zone { position: absolute; bottom: 50px; left: 50px; width: 150px; height: 150px; z-index: 10; }
+        #touch-zone { position: absolute; top: 0; right: 0; width: 50%; height: 100%; z-index: 9; }
+        
+        /* Orientation Lock Warning */
+        #portrait-warning {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #111; color: red; z-index: 100;
+            flex-direction: column; align-items: center; justify-content: center; text-align: center;
+        }
+        
+        @media screen and (orientation: portrait) {
+            #portrait-warning { display: flex; }
+        }
+    </style>
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.1/nipplejs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="portrait-warning">
+        <h1>GIRE A TELA</h1>
+        <p>Este jogo requer modo paisagem.</p>
+    </div>
+
+    <div id="game-container"></div>
+    <div id="joystick-zone"></div>
+    <div id="touch-zone"></div>
+
+    <script type="module" src="game.js"></script>
+</body>
+</html>
